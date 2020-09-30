@@ -126,6 +126,13 @@ alias fww='cd ~/go/src/Fairwinds/Insights/web'
 alias fwapi='go run main.go --port 3000'
 alias fwclient='npm run build && npm run watch'
 alias da='direnv allow'
+alias kns='kubectl config set-context --current --namespace'
+
+# replace all occurences in directory recursively
+# eg. replaceall pkg/ 's/toBeReplaced/newGoodStuff/'
+function replaceall() {
+  find "${1}" -type f -exec sed -i -e "${2}" {} \;
+}
 
 export GOPATH=$HOME/go
 

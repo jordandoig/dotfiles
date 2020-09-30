@@ -13,8 +13,10 @@ set expandtab
 set modelines=0
 set autowrite
 set t_Co=256
-"colorscheme onehalflight
 colorscheme onehalfdark
+
+" Different tabs for JS
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=2
 
 " escape shortcuts
 inoremap jk <ESC>
