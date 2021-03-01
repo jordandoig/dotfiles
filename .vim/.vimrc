@@ -17,6 +17,11 @@ colorscheme onehalfdark
 
 " Different tabs for JS
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=2
+autocmd Filetype gohtmltmpl setlocal ts=2 sw=2 sts=2
+autocmd Filetype css setlocal ts=2 sw=2 sts=2
+autocmd Filetype pug setlocal ts=2 sw=2 sts=2
+autocmd Filetype python setlocal ts=2 sw=2 sts=2
+autocmd Filetype vue setlocal ts=2 sw=2 sts=2
 
 " escape shortcuts
 inoremap jk <ESC>
@@ -40,6 +45,7 @@ else
 endif
 
 " Toggle Line Comment
+let NERDSpaceDelims=1
 nnoremap ,c :call NERDComment(0,"toggle")<CR>
 vnoremap ,c :call NERDComment(0,"toggle")<CR>
 
@@ -142,5 +148,7 @@ nnoremap <leader>m :call ToggleDark()<CR>
 " Run go lint in save for go files
 :autocmd BufWritePost *.go :GoLint
 :autocmd BufWritePost *.go :GoVet
-:autocmd BufWritePost *.go :GoErrCheck
+":autocmd BufWritePost *.go :GoErrCheck
 
+" .gohtml syntax highlighting
+au BufRead,BufNewFile *.gohtml set filetype=gohtmltmpl

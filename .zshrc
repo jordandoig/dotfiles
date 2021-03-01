@@ -15,6 +15,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="clean"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -157,7 +158,7 @@ if [ -f '/Users/jordandoig/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jordandoig/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jordandoig/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-fpath=(/Users/jordandoig/.asdf/completions /Users/jordandoig/.oh-my-zsh/plugins/asdf /Users/jordandoig/.oh-my-zsh/plugins/kubectl /Users/jordandoig/.oh-my-zsh/plugins/dotenv /Users/jordandoig/.oh-my-zsh/plugins/git /Users/jordandoig/.oh-my-zsh/functions /Users/jordandoig/.oh-my-zsh/completions /usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.7.1/functions)
+fpath=(/Users/jordandoig/.asdf/completions /Users/jordandoig/.oh-my-zsh/plugins/asdf /Users/jordandoig/.oh-my-zsh/plugins/kubectl /Users/jordandoig/.oh-my-zsh/plugins/dotenv /Users/jordandoig/.oh-my-zsh/plugins/git /Users/jordandoig/.oh-my-zsh/functions /Users/jordandoig/.oh-my-zsh/completions /usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.8/functions)
 
 autoload -Uz compinit && compinit
 
@@ -170,7 +171,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # dropbox code - 0kzaxmnv
 export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 
+. /usr/local/opt/asdf/asdf.sh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-. /usr/local/opt/asdf/asdf.sh
