@@ -73,7 +73,6 @@ DISABLE_UPDATE_PROMPT="true"
 plugins=(
 git
 dotenv
-kubectl
 asdf
 )
 
@@ -111,23 +110,8 @@ export NVM_DIR="$HOME/.nvm"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias weather='_weather(){ curl -s https://wttr.in/${1:-denver}; }; _weather'
-alias dockerpgstart='docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres:11.8'
-alias dockerpsql='docker exec -it pg-docker psql "host=localhost user=postgres password=docker"'
-alias testfw='go test ./pkg/... -p 1 -coverprofile=coverage.txt -covermode=atomic --tags=integration'
-alias fwuitest='npx vue-cli-service test:e2e --url http://localhost:3000/'
-alias goose='/Users/jordandoig/go/bin/goose'
-alias gorm-goose='/Users/jordandoig/go/bin/gorm-goose'
 alias gpd='git push origin --delete'
 alias gbD='git branch -D'
-alias k='kubectl'
-alias fwctl='cuddlectl use reactiveops.com'
-alias fwop='eval $(op signin reactiveops)'
-alias fwi='cd ~/go/src/Fairwinds/Insights'
-alias fww='cd ~/go/src/Fairwinds/Insights/web'
-alias fwapi='go run main.go --port 3000'
-alias fwclient='npm run build && npm run watch'
-alias da='direnv allow'
-alias kns='kubectl config set-context --current --namespace'
 
 # replace all occurences in directory recursively
 # eg. replaceall pkg/ 's/toBeReplaced/newGoodStuff/'
@@ -135,43 +119,17 @@ function replaceall() {
   find "${1}" -type f -exec sed -i -e "${2}" {} \;
 }
 
-export GOPATH=$HOME/go
-
-# Hook up direnv
-eval "$(direnv hook zsh)"
-ZSH_DOTENV_FILE=.envrc
-
-# Cuddlefish things
-source ~/.cuddlefish/config
-source <(kubectl completion zsh)
-
-# Kube info plugin
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-PROMPT='$(kube_ps1)'$PROMPT
-
-# Runner autocomplete?
-eval $(runner --completion=bash)
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jordandoig/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jordandoig/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/jordandoig/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jordandoig/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-fpath=(/Users/jordandoig/.asdf/completions /Users/jordandoig/.oh-my-zsh/plugins/asdf /Users/jordandoig/.oh-my-zsh/plugins/kubectl /Users/jordandoig/.oh-my-zsh/plugins/dotenv /Users/jordandoig/.oh-my-zsh/plugins/git /Users/jordandoig/.oh-my-zsh/functions /Users/jordandoig/.oh-my-zsh/completions /usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.8/functions)
-
-autoload -Uz compinit && compinit
-
-# Add local go to PATH for reasons
-export PATH="$PATH:$HOME/go/bin"
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 
 # dropbox code - 0kzaxmnv
-export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
-
-. /usr/local/opt/asdf/asdf.sh
+# export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Initialize asdf
+. /usr/local/opt/asdf/asdf.sh
+
+# Pull in work stuff
+[ -f ~/.work_stuff ] && source ~/.work_stuff
