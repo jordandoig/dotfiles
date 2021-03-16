@@ -15,6 +15,8 @@ set autowrite
 set t_Co=256
 colorscheme onehalfdark
 
+execute pathogen#infect()
+
 " Different tabs for JS
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=2
 autocmd Filetype gohtmltmpl setlocal ts=2 sw=2 sts=2
