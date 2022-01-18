@@ -17,8 +17,9 @@ colorscheme onehalfdark
 
 execute pathogen#infect()
 
-" Different tabs for JS
+" Different tabs for different filetypes
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=2
+autocmd Filetype typescript setlocal ts=2 sw=2 sts=2
 autocmd Filetype gohtmltmpl setlocal ts=2 sw=2 sts=2
 autocmd Filetype css setlocal ts=2 sw=2 sts=2
 autocmd Filetype pug setlocal ts=2 sw=2 sts=2
@@ -152,5 +153,26 @@ nnoremap <leader>m :call ToggleDark()<CR>
 :autocmd BufWritePost *.go :GoVet
 ":autocmd BufWritePost *.go :GoErrCheck
 
-" .gohtml syntax highlighting
+" Syntax highlighting
 au BufRead,BufNewFile *.gohtml set filetype=gohtmltmpl
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col
+        return "\<tab>"
+    endif
+
+    let char = getline('.')[col - 1]
+    if char =~ '\k'
+        " There's an identifier before the cursor, so complete the identifier.
+        return "\<c-p>"
+    else
+        return "\<tab>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
